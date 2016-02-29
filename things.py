@@ -94,10 +94,12 @@ for x in nonmod:
 # straight WMO
 print "ANY\t^(WO..[0-8].) (....) (......)$"
 print "\tFILE\t-log -close -edex -overwrite\t/awips2/data_store/text/misc/%Y/%m/%d/%H/\\1_\\2_\\3_(seq).%Y%m%d%H"
+print ""
 
 # WMO with BBB
 print "ANY\t^(WO..[0-8].) (....) (......) ([A-Z0-9]..)$"
 print "\tFILE\t-log -close -edex -overwrite\t/awips2/data_store/text/misc/%Y/%m/%d/%H/\\1_\\2_\\3_\\4_(seq).%Y%m%d%H"
+print ""
 
 # straight PIL
 print "ANY\t^(WO..[0-8].) (....) (......) /[mp](.*)"
@@ -115,6 +117,7 @@ print ""
 # WOUS99 is the KNCF test message
 print "ANY\t^WOUS99 (....) ......"
 print "\tFILE\t-log -close -overwrite\t/awips2/data_store/tstmsg/NCF.\\1"
+print ""
 
 for x in tstmsg:
 	# Usually, these are TSTMSG.  They don't appear to use MONMSG these days.
