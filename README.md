@@ -17,3 +17,12 @@ don't generate enough products per day to make an hourly split needed.  Not
 to mention, ldm's scour process kills off stuff older than a day or two.  The
 ldm data_store is transitory.  Files need to hang around long enough to be
 ingested by EDEX.  So, may as well make it convenient for my own use.
+
+
+HEY YOU USED ANY FOR FEED TYPE
+------------------------------
+
+Yes.  I have found that noaaportIngester and pqing will do some weird things
+with feed type, so I used ANY feeds everywhere.  It would be more important
+if we were using the non-WMO products that are fed over IDD, but we are not
+running IDD, are we?

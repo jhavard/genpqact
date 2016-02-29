@@ -66,8 +66,65 @@ for x in satdat:
 	print "ANY\t^(%s....) (....) (......) ([A-Z0-9]..) /p(.*)" % x
 	print "\tFILE\t-log -close -edex -overwrite\t/awips/data_store/satdat/%Y%m%d/\\1_\\2_\\3_\\4_\\5_(seq).%Y%m%d%H"
 	print ""
-	
 
-#print "NEED SPECIAL HANDLING FOR WO"
+for x in nonmod:
+	# straight WMO
+	print "ANY\t^(%s....) (....) (......)$" % x
+	print "\tFILE\t-log -close -edex -overwrite\t/awips2/data_store/text/misc/%Y/%m/%d/%H/\\1_\\2_\\3_(seq).%Y%m%d%H"
+	print ""
+
+	# WMO with BBB
+	print "ANY\t^(%s....) (....) (......) ([A-Z0-9]..)$" % x
+	print "\tFILE\t-log -close -edex -overwrite\t/awips2/data_store/text/misc/%Y/%m/%d/%H/\\1_\\2_\\3_\\4_(seq).%Y%m%d%H"
+	print ""
+
+	# straight PIL
+	print "ANY\t^(%s....) (....) (......) /[mp](.*)" % x
+	print "\tFILE\t-log -close -edex -overwrite\t/awips2/data_store/text/\\4/%Y/%m/%d/%H/\\1_\\2_\\3_\\4_(seq).%Y%m%d%H"
+	print ""
+
+	# PIL with BBB
+	print "ANY\t^(%s....) (....) (......) ([A-Z0-9]..) /[mp](.*)" % x
+	print "\tFILE\t-log -close -edex -overwrite\t/awips2/data_store/text/\\5/%Y/%m/%d/%H/\\1_\\2_\\3_\\4_\\5_(seq).%Y%m%d%H"
+	print ""
 
 
+# Special handling for WO to skip KNCF test messages
+
+# straight WMO
+print "ANY\t^(WO..[0-8].) (....) (......)$"
+print "\tFILE\t-log -close -edex -overwrite\t/awips2/data_store/text/misc/%Y/%m/%d/%H/\\1_\\2_\\3_(seq).%Y%m%d%H"
+
+# WMO with BBB
+print "ANY\t^(WO..[0-8].) (....) (......) ([A-Z0-9]..)$"
+print "\tFILE\t-log -close -edex -overwrite\t/awips2/data_store/text/misc/%Y/%m/%d/%H/\\1_\\2_\\3_\\4_(seq).%Y%m%d%H"
+
+# straight PIL
+print "ANY\t^(WO..[0-8].) (....) (......) /[mp](.*)"
+print "\tFILE\t-log -close -edex -overwrite\t/awips2/data_store/text/\\4/%Y/%m/%d/%H/\\1_\\2_\\3_\\4_(seq).%Y%m%d%H"
+print ""
+
+# PIL with BBB
+print "ANY\t^(WO..[0-8].) (....) (......) ([A-Z0-9]..) /[mp](.*)"
+print "\tFILE\t-log -close -edex -overwrite\t/awips2/data_store/text/\\5/%Y/%m/%d/%H/\\1_\\2_\\3_\\4_\\5_(seq).%Y%m%d%H"
+print ""
+
+
+# Now we handle test messages
+
+# WOUS99 is the KNCF test message
+print "ANY\t^WOUS99 (....) ......"
+print "\tFILE\t-log -close -overwrite\t/awips2/data_store/tstmsg/NCF.\\1"
+
+for x in tstmsg:
+	# Usually, these are TSTMSG.  They don't appear to use MONMSG these days.
+	# also, PTWC does something a little different.  This is why we save SITE.PIL
+	# as it may be important.
+	#
+	print "ANY\t^%s.... (....) ...... /p(.*)" % x
+	print "\tFILE\t-log -close -overwrite\t/awips2/data_store/tstmsg/\\1.\\2"
+	print ""
+
+# don't forget the miscellaneous junk... save it but don't feed to EDEX
+print "ANY\t^_ELSE_$"
+print "\tFILE\t-log -close\t/awips2/data_store/wtf/%Y/%m/%d/%Y%m%d%H%M.(seq)"
