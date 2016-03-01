@@ -43,7 +43,7 @@ for x in models:
 
 for x in radars:
 	print "ANY\t^%s..(..) (....) (......) /p(...)(...)" % x
-	print "\tFILE\t-log -close -edex -overwrite\t/awips2/data_store/radar/\\4/%Y%m%d/\\4_\\5_\\2_\\3_\\1_(seq).%Y%m%d%H.radar"
+	print "\tFILE\t-log -close -edex -overwrite\t/awips2/data_store/radar/\\5/%Y%m%d/\\5_\\4_\\2_\\3_\\1_(seq).%Y%m%d%H.radar"
 	print ""
 
 for x in satdat:
