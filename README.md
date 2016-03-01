@@ -26,3 +26,10 @@ Yes.  I have found that noaaportIngester and pqing will do some weird things
 with feed type, so I used ANY feeds everywhere.  It would be more important
 if we were using the non-WMO products that are fed over IDD, but we are not
 running IDD, are we?
+
+WHAT ALL THAT OTHER STUFF?
+--------------------------
+
+Why are you so loud?  I have included ncf_rrdupd.pl, which is used to calculate
+the delay on NCF's test messages.  The creation of an appropriate rrdb is left
+as an exercise for the reader.

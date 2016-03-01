@@ -146,9 +146,25 @@ print ""
 # Now we handle test messages
 
 # WOUS99 is the KNCF test message
-print "ANY\t^WOUS99 (....) ......"
-print "\tFILE\t-log -close -overwrite\t/awips2/data_store/tstmsg/NCF.\\1"
+
+print "# WOUS99 is the KNCF test message so we not only save it, but EXEC"
+print "# a script to stat the file and then log the mtime to an rrd file."
+print "# That delay is approximately the time it takes for a message to leave"
+print "# the NCF servers, travel through the transmission equipment, up to a"
+print "# geosynchronuos satellite, bounce off a parabolic reflector in my back"
+print "# yard, into a low noise block amplifier, travel through a piece of RG-6"
+print "# and into a Novra S300N receiver, be converted back into IP packets, hit"
+print "# the switch, dig its way into cp1, be decoded by noaaportIngester, be"
+print "# processed by LDM and its pqact and be written to the file system"
 print ""
+print "ANY\t^WOUS99 KNCF ......"
+print "\tFILE\t-log -close -overwrite\t/awips2/data_store/tstmsg/NCF.KNCF"
+print ""
+print "ANY\t^WOUS99 KNCF (..)(..)(..)"
+print "\tEXEC\t/export/stats/ncf_rrdupd.pl \\1 \\2 \\3"
+print ""
+
+
 
 for x in tstmsg:
 	# Usually, these are TSTMSG.  They don't appear to use MONMSG these days.
