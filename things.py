@@ -10,7 +10,7 @@ nonmod = ['AB', 'AC', 'AE', 'AG', 'AS', 'AT', 'AU', 'AW', 'AX', 'CD', 'CX', 'FA'
 		'OB', 'OC', 'OJ', 'OK', 'OM', 'ON', 'OP', 'OY', 'PE', 'PG', 'PH', 'PJ', 'PM', 'PP', 'PR',
 		'PS', 'PT', 'PW', 'PX', 'PY', 'RX', 'SH', 'SO', 'SR', 'SX', 'TX', 'UB', 'UD', 'XX',
 		'UE', 'UF', 'UG', 'UH', 'UK', 'UL', 'UM', 'UP', 'UQ', 'US', 'UX', 'WA', 'WG', 'WH', 
-		'WS', 'WU', 'WW']
+		'WS', 'WU', 'WW', 'UZ', 'UR']
 
 radars = ['SD']
 
