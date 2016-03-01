@@ -6,7 +6,7 @@ models = ['HA', 'HE', 'HH', 'HP', 'HR', 'HT', 'HU', 'HV', 'YA', 'YB', 'YC', 'YD'
 
 nonmod = ['AB', 'AC', 'AE', 'AG', 'AS', 'AT', 'AU', 'AW', 'AX', 'CD', 'CX', 'FA', 'FE', 'FG', 'FL', 'FM',
 		'FN', 'FO', 'FP', 'FR', 'FS', 'FT', 'FW', 'FX', 'FZ', 'IS', 
-		'NG', 'NO', 'NT', 'NW', 'NZ', 'OA',
+		'NG', 'NO', 'NW', 'NZ', 'OA',
 		'OB', 'OC', 'OJ', 'OK', 'OM', 'ON', 'OP', 'OY', 'PE', 'PG', 'PH', 'PJ', 'PM', 'PP', 'PR',
 		'PS', 'PT', 'PW', 'PX', 'PY', 'RX', 'SH', 'SO', 'SR', 'SX', 'TX', 'UB', 'UD', 'XX',
 		'UE', 'UF', 'UG', 'UH', 'UK', 'UL', 'UM', 'UP', 'UQ', 'US', 'UX', 'WA', 'WG', 'WH', 
