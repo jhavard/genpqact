@@ -51,8 +51,8 @@ for x in radars:
 # NXUS6[0-9] is the General Status Message
 # AFAICT, this is not decoded by AWIPS, but it is stuffed into the fxatext database.  ick!
 print "ANY\t^NXUS6. (....) (......) /p(...)(...)"
-	print "\tFILE\t-log -close -overwrite\t/awips2/data_store/radar/\\4/%Y%m%d/\\4_\\3_\\1_\\2_(seq).%Y%m%d%H.gsm"
-	print ""
+print "\tFILE\t-log -close -overwrite\t/awips2/data_store/radar/\\4/%Y%m%d/\\4_\\3_\\1_\\2_(seq).%Y%m%d%H.gsm"
+print ""
 
 for x in satdat:
 	# straight WMO
