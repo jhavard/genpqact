@@ -6,7 +6,7 @@ models = ['HA', 'HE', 'HH', 'HP', 'HR', 'HT', 'HU', 'HV', 'YA', 'YB', 'YC', 'YD'
 
 nonmod = ['AB', 'AC', 'AE', 'AG', 'AS', 'AT', 'AU', 'AW', 'AX', 'CD', 'CX', 'FA', 'FE', 'FG', 'FL', 'FM',
 		'FN', 'FO', 'FP', 'FR', 'FS', 'FT', 'FW', 'FX', 'FZ', 'IS', 
-		'NG', 'NO', 'NT', 'NW', 'NX', 'NZ', 'OA',
+		'NG', 'NO', 'NT', 'NW', 'NZ', 'OA',
 		'OB', 'OC', 'OJ', 'OK', 'OM', 'ON', 'OP', 'OY', 'PE', 'PG', 'PH', 'PJ', 'PM', 'PP', 'PR',
 		'PS', 'PT', 'PW', 'PX', 'PY', 'RX', 'SH', 'SO', 'SR', 'SX', 'TX', 'UB', 'UD', 'XX',
 		'UE', 'UF', 'UG', 'UH', 'UK', 'UL', 'UM', 'UP', 'UQ', 'US', 'UX', 'WA', 'WG', 'WH', 
@@ -15,6 +15,8 @@ nonmod = ['AB', 'AC', 'AE', 'AG', 'AS', 'AT', 'AU', 'AW', 'AX', 'CD', 'CX', 'FA'
 radars = ['SD']
 
 tstmsg = ['NT']
+
+# Special codes WO, NX
 
 # also, any other binary products that aren't model grids...
 # may also include some upper air stuff (IU)
@@ -44,6 +46,12 @@ for x in models:
 for x in radars:
 	print "ANY\t^%s..(..) (....) (......) /p(...)(...)" % x
 	print "\tFILE\t-log -close -edex -overwrite\t/awips2/data_store/radar/\\5/%Y%m%d/\\5_\\4_\\2_\\3_\\1_(seq).%Y%m%d%H.radar"
+	print ""
+
+# NXUS6[0-9] is the General Status Message
+# AFAICT, this is not decoded by AWIPS, but it is stuffed into the fxatext database.  ick!
+print "ANY\t^NXUS6. (....) (......) /p(...)(...)"
+	print "\tFILE\t-log -close -overwrite\t/awips2/data_store/radar/\\4/%Y%m%d/\\4_\\3_\\1_\\2_(seq).%Y%m%d%H.gsm"
 	print ""
 
 for x in satdat:
@@ -87,6 +95,29 @@ for x in nonmod:
 	print "ANY\t^(%s....) (....) (......) ([A-Z0-9]..) /[mp](.*)" % x
 	print "\tFILE\t-log -close -edex -overwrite\t/awips2/data_store/text/\\2/%Y/%m/%d/%H/\\1_\\2_\\3_\\4_\\5_(seq).%Y%m%d%H"
 	print ""
+
+
+# Special handling for all other NX..[0-57-9]. messages
+
+# straight WMO
+print "ANY\t^(NX..[0-57-9].) (....) (......)$"
+print "\tFILE\t-log -close -edex -overwrite\t/awips2/data_store/text/\\2/%Y/%m/%d/%H/\\1_\\2_\\3_(seq).%Y%m%d%H"
+print ""
+
+# WMO with BBB
+print "ANY\t^(NX..[0-57-9].) (....) (......) ([A-Z0-9]..)$"
+print "\tFILE\t-log -close -edex -overwrite\t/awips2/data_store/text/\\2/%Y/%m/%d/%H/\\1_\\2_\\3_\\4_(seq).%Y%m%d%H"
+print ""
+
+# straight PIL
+print "ANY\t^(NX..[0-57-9].) (....) (......) /[mp](.*)"
+print "\tFILE\t-log -close -edex -overwrite\t/awips2/data_store/text/\\2/%Y/%m/%d/%H/\\1_\\2_\\3_\\4_(seq).%Y%m%d%H"
+print ""
+
+# PIL with BBB
+print "ANY\t^(NX..[0-57-9].) (....) (......) ([A-Z0-9]..) /[mp](.*)"
+print "\tFILE\t-log -close -edex -overwrite\t/awips2/data_store/text/\\2/%Y/%m/%d/%H/\\1_\\2_\\3_\\4_\\5_(seq).%Y%m%d%H"
+print ""
 
 
 # Special handling for WO to skip KNCF test messages
