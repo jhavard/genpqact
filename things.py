@@ -70,22 +70,22 @@ for x in satdat:
 for x in nonmod:
 	# straight WMO
 	print "ANY\t^(%s....) (....) (......)$" % x
-	print "\tFILE\t-log -close -edex -overwrite\t/awips2/data_store/text/misc/%Y/%m/%d/%H/\\1_\\2_\\3_(seq).%Y%m%d%H"
+	print "\tFILE\t-log -close -edex -overwrite\t/awips2/data_store/text/\\2/%Y/%m/%d/%H/\\1_\\2_\\3_(seq).%Y%m%d%H"
 	print ""
 
 	# WMO with BBB
 	print "ANY\t^(%s....) (....) (......) ([A-Z0-9]..)$" % x
-	print "\tFILE\t-log -close -edex -overwrite\t/awips2/data_store/text/misc/%Y/%m/%d/%H/\\1_\\2_\\3_\\4_(seq).%Y%m%d%H"
+	print "\tFILE\t-log -close -edex -overwrite\t/awips2/data_store/text/\\2/%Y/%m/%d/%H/\\1_\\2_\\3_\\4_(seq).%Y%m%d%H"
 	print ""
 
 	# straight PIL
 	print "ANY\t^(%s....) (....) (......) /[mp](.*)" % x
-	print "\tFILE\t-log -close -edex -overwrite\t/awips2/data_store/text/\\4/%Y/%m/%d/%H/\\1_\\2_\\3_\\4_(seq).%Y%m%d%H"
+	print "\tFILE\t-log -close -edex -overwrite\t/awips2/data_store/text/\\2/%Y/%m/%d/%H/\\1_\\2_\\3_\\4_(seq).%Y%m%d%H"
 	print ""
 
 	# PIL with BBB
 	print "ANY\t^(%s....) (....) (......) ([A-Z0-9]..) /[mp](.*)" % x
-	print "\tFILE\t-log -close -edex -overwrite\t/awips2/data_store/text/\\5/%Y/%m/%d/%H/\\1_\\2_\\3_\\4_\\5_(seq).%Y%m%d%H"
+	print "\tFILE\t-log -close -edex -overwrite\t/awips2/data_store/text/\\2/%Y/%m/%d/%H/\\1_\\2_\\3_\\4_\\5_(seq).%Y%m%d%H"
 	print ""
 
 
