@@ -159,6 +159,12 @@ for x in tstmsg:
 	print "\tFILE\t-log -close -overwrite\t/awips2/data_store/tstmsg/\\1.\\2"
 	print ""
 
+	# turns out, a significant number of those test messages no longer have a PIL code
+	# I bet they used to be MONMSG...
+	print "ANY\t^%s.... (....) ......$" % x
+	print "\tFILE\t-log -close -overwrite\t/awips2/data_store/tstmsg/\\1.\\1"
+	print ""
+
 # don't forget the miscellaneous junk... save it but don't feed to EDEX
 print "ANY\t^_ELSE_$"
 print "\tFILE\t-log -close\t/awips2/data_store/wtf/%Y/%m/%d/%Y%m%d%H%M.(seq)"
